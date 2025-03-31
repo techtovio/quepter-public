@@ -123,11 +123,14 @@
 
 🌟 How It All Works!
 
-Technologies Used:
+# Technologies Used:
 - Django for backend
-HTML, CSS, SCSS, JAVASCRIPT & Bootstrap for frontend
 
-Intergrating Hedera using Hiero SDK
+- HTML, CSS, SCSS, JAVASCRIPT & Bootstrap for frontend
+
+- # Intergrating Hedera using Hiero SDK
+
+
 `
 from wallet.contracts.hedera import load_operator_credentials, create_new_account, query_balance, transfer_token
 from hiero_sdk_python import (
@@ -140,11 +143,16 @@ from hiero_sdk_python import (
     TokenId
 )
 `
-Getting QPT  Wallet Balance
+
+- # Getting QPT  Wallet Balance
+
 `
 qpt_balance = mirror_node.get_token_balance_for_account(account_id=wallet.recipient_id, token_id=os.getenv('Token_ID'))
 `
-Transfering QPT Token from origin wallet to recipient wallet
+
+
+- # Transfering QPT Token from origin wallet to recipient wallet
+
 
 `
 def transfer_tokens(operator_id_sender, operator_key_sender, recipient_id, amount):
