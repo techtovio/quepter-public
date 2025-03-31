@@ -123,6 +123,57 @@
 
 🌟 How It All Works!
 
+Technologies Used:
+- Django for backend
+HTML, CSS, SCSS, JAVASCRIPT & Bootstrap for frontend
+
+Intergrating Hedera using Hiero SDK
+`
+from wallet.contracts.hedera import load_operator_credentials, create_new_account, query_balance, transfer_token
+from hiero_sdk_python import (
+    Client,
+    AccountId,
+    PrivateKey,
+    TransferTransaction,
+    Network,
+    TokenAssociateTransaction,
+    TokenId
+)
+`
+Getting QPT  Wallet Balance
+`
+qpt_balance = mirror_node.get_token_balance_for_account(account_id=wallet.recipient_id, token_id=os.getenv('Token_ID'))
+`
+Transfering QPT Token from origin wallet to recipient wallet
+
+`
+def transfer_tokens(operator_id_sender, operator_key_sender, recipient_id, amount):
+    network_type = os.getenv('NETWORK')
+    network = Network(network=network_type)
+    client = Client(network)
+
+    operator_id = AccountId.from_string(os.getenv('OPERATOR_ID'))
+    operator_key = PrivateKey.from_string(os.getenv('OPERATOR_KEY'))
+    token_id = TokenId.from_string(os.getenv('Token_ID'))
+
+    client.set_operator(operator_id, operator_key)
+
+    transaction = (
+        TransferTransaction()
+        .add_token_transfer(token_id, operator_id_sender, -amount)
+        .add_token_transfer(token_id, recipient_id, amount)
+        .freeze_with(client)
+        .sign(operator_key_sender)
+    )
+
+    try:
+        receipt = transaction.execute(client)
+        print("Token transfer successful.")
+        return True
+    except Exception as e:
+        print(f"Token transfer failed: {str(e)}")
+        return False
+`
 
 ---
 
