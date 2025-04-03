@@ -131,4 +131,4 @@ MIT
 ## 🌎 Join the Quepter Revolution!
 Help us build the future of youth empowerment through blockchain and AI technologies!
 
-For any questions or support, please contact [your support email].
+For any questions or support, please contact kembohititoh@gmail.com.
